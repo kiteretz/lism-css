@@ -31,6 +31,7 @@ function deleteDuplicateDir(filePath) {
 // ファイルパスは大文字・小文字まで一致しないと Vercel でこけるので注意。
 const entries = {
   'components/index': resolve(__dirname, 'src/components/index.ts'),
+  'purge/index': resolve(__dirname, 'src/purge/index.ts'),
   // 'components/Box/index': resolve(__dirname, 'src/components/Box/index.js'),
 
   // ↓ scripts.jsのビルドと、setEvent.js もこれでビルドされる.
@@ -80,7 +81,7 @@ export default defineConfig({
     },
     rollupOptions: {
       plugins: [],
-      external: ['react', 'react-dom', 'react/jsx-runtime', 'lism-css/config.js'],
+      external: ['react', 'react-dom', 'react/jsx-runtime', 'lism-css/config.js', /^node:/],
       output: {
         dir: 'dist',
         // exports: 'named',
